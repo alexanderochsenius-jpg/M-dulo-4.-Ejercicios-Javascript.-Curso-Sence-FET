@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicios JavaScript - Formulario</title>
+  <div class="firma-copyright"> © 2026 Julio. Formulario de Ejercicios con JavaScript realizada por Alexander Wolfgang Ochsenius Geis con asistencia de IA DeepSeek, IA Gemini e IA Claude. Programa de Formación SENCE Curso Front End Trainee. Alumno del Profesor Francisco Totesaut </div>
+  <style>
+    /* Estilos básicos para orden y claridad */
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f7fc;
+      margin: 2rem;
+      color: #1e2b3a;
+    }
+    h1 {
+      text-align: center;
+      color: #0b3b5c;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    section {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #dce3eb;
+    }
+    section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+    h2 {
+      font-size: 1.2rem;
+      color: #1f4a6e;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .badge {
+      background: #1f4a6e;
+      color: white;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+    }
+    .grupo {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.8rem;
+      margin: 0.8rem 0;
+    }
+    .grupo label {
+      font-weight: 600;
+      min-width: 70px;
+    }
+    input, select {
+      padding: 0.4rem 0.8rem;
+      border: 1px solid #b8c9dd;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      background: white;
+      flex: 0 1 auto;
+    }
+    input[type="number"] {
+      width: 100px;
+    }
+    button {
+      background: #1f4a6e;
+      color: white;
+      border: none;
+      padding: 0.4rem 1.2rem;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #0d314a;
+    }
+    .output {
+      background: #e9eff5;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      margin-top: 0.6rem;
+      min-height: 2.4rem;
+      border-left: 4px solid #1f4a6e;
+      font-size: 0.95rem;
+      word-break: break-word;
+    }
+    .output--error {
+      border-left-color: #c0392b;
+      background: #fde8e5;
+      color: #a93226;
+    }
+    .output ul {
+      margin: 0.3rem 0;
+      padding-left: 1.5rem;
+    }
+    .output p {
+      margin: 0.3rem 0;
+    }
+    .inline-code {
+      background: #eef3f8;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      align-items: center;
+    }
+    hr {
+      border: none;
+      border-top: 1px dashed #cbd7e6;
+      margin: 1rem 0;
+    }
+    
+    /* ============================================   FIRMA DEL DESARROLLADOR   ============================================ */ @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display= swap'); 
+    
+    .caja-firma {    
+    display: flex;justify-content: center; 
+    align-items: center;    
+    width: 100%;   
+    margin: 12px 0;   
+    padding: 0 10px;    
+    box-sizing: border-box; 
+    }
+    .firma-copyright {    
+    font-family:    'Dancing Script', cursive
+    !important;     font-size: 16px
+    !important;     color: #ff69b4 
+    !important;     background-color: #000000
+    !important;     padding: 8px 15px 
+    !important;     border-radius: 8px 
+    !important;     text-align: center;    
+    line-height:    1.4;   
+    letter-spacing: 0.5px;    
+    display:        inline-block; 
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🧪 Ejercicios de JavaScript</h1>
+
+    <!-- Ejercicio 1: Saludo -->
+    <section>
+      <h2><span class="badge">1</span> Saludo personalizado</h2>
+      <div class="grupo">
+        <label for="inputNombre">Tu nombre:</label>
+        <input type="text" id="inputNombre" placeholder="Escribe tu nombre" />
+        <button id="btnSaludar">Saludar</button>
+      </div>
+      <div id="outSaludo" class="output">Esperando tu nombre...</div>
+    </section>
+
+    <!-- Ejercicio 2: Comparador -->
+    <section>
+      <h2><span class="badge">2</span> Comparar dos números</h2>
+      <div class="row">
+        <label for="inputA">Número A:</label>
+        <input type="number" id="inputA" value="5" />
+        <label for="inputB">Número B:</label>
+        <input type="number" id="inputB" value="3" />
+        <button id="btnComparar">Comparar</button>
+      </div>
+      <div id="outComparar" class="output">Resultado de la comparación</div>
+    </section>
+
+    <!-- Ejercicio 3: Arreglos y bucles -->
+    <section>
+      <h2><span class="badge">3</span> Arreglo y bucles</h2>
+      <p><strong>Arreglo original:</strong> <span id="listaNumeros" class="inline-code"></span></p>
+      <div class="row">
+        <button id="btnFor">Recorrer con <code>for</code></button>
+        <button id="btnWhile">Recorrer con <code>while</code></button>
+        <button id="btnFiltrar">Filtrar > 10</button>
+      </div>
+      <div id="outArreglos" class="output">Presiona un botón para ver el resultado</div>
+    </section>
+
+    <!-- Ejercicio 4: Calculadora -->
+    <section>
+      <h2><span class="badge">4</span> Calculadora modular</h2>
+      <div class="row">
+        <label for="calcA">A:</label>
+        <input type="number" id="calcA" value="8" />
+        <label for="calcB">B:</label>
+        <input type="number" id="calcB" value="4" />
+        <label for="calcOperacion">Operación:</label>
+        <select id="calcOperacion">
+          <option value="sumar">Sumar</option>
+          <option value="restar">Restar</option>
+          <option value="multiplicar">Multiplicar</option>
+          <option value="dividir">Dividir</option>
+        </select>
+        <button id="btnCalcular">Calcular</button>
+      </div>
+      <div id="outCalculadora" class="output">Resultado de la operación</div>
+    </section>
+
+    <!-- Ejercicio 5: Objetos y colecciones -->
+    <section>
+      <h2><span class="badge">5</span> Objetos y biblioteca</h2>
+      <div class="grupo">
+        <span><strong>Libro favorito:</strong></span>
+        <span id="outLibro" class="inline-code"></span>
+      </div>
+      <div class="grupo">
+        <button id="btnSaludarUsuario">Saludar desde objeto</button>
+        <span id="outUsuario" class="output" style="display:inline-block; min-width:200px;"></span>
+      </div>
+      <hr>
+      <p><strong>Biblioteca:</strong></p>
+      <div id="outBiblioteca" class="output"></div>
+      <button id="btnMayuscula">Mostrar títulos en mayúscula</button>
+    </section>
+  </div>
+
+  <!-- ====== INCLUIMOS EL CÓDIGO JAVASCRIPT AQUÍ ====== -->
+  <script>
+    /* © 2026 Julio. Formulario de Ejercicios con JavaScript realizada por Alexander Wolfgang Ochsenius Geis con asistencia de IA DeepSeek, 
+    IA Gemini e IA Claude. Programa de Formación SENCE Curso Front End Trainee. Alumno del Profesor Francisco Totesaut */
+
+    // ==================== PARTE A — LÓGICA ====================
+
+    // ---- Ejercicio 2: comparador de números ----
+    function compararNumeros(a, b) {
+      if (a > b) return `El primer número (${a}) es mayor que el segundo (${b}).`;
+      if (a < b) return `El segundo número (${b}) es mayor que el primer número (${a}).`;
+      if (a === b) return "Ambos números son iguales.";
+      return "Por favor, asegúrate de haber ingresado números válidos.";
+    }
+
+    // ---- Ejercicio 3: arreglos y bucles ----
+    const numeros = [12, 5, 8, 130, 44, 7, 21, 14];
+
+    function recorrerConFor(arreglo) {
+      const resultado = [];
+      for (let i = 0; i < arreglo.length; i++) {
+        resultado.push(`Posición ${i}: ${arreglo[i]}`);
+      }
+      return resultado;
+    }
+
+    function recorrerConWhile(arreglo) {
+      const resultado = [];
+      let index = 0;
+      while (index < arreglo.length) {
+        resultado.push(`Posición ${index}: ${arreglo[index]}`);
+        index++;
+      }
+      return resultado;
+    }
+
+    function filtrarMayoresDeDiez(arregloOriginal) {
+      const resultadoFiltrado = [];
+      for (let i = 0; i < arregloOriginal.length; i++) {
+        if (arregloOriginal[i] > 10) {
+          resultadoFiltrado.push(arregloOriginal[i]);
+        }
+      }
+      return resultadoFiltrado;
+    }
+
+    // ---- Ejercicio 4: funciones y modularización (calculadora) ----
+    function sumar(a, b) { return a + b; }
+    function restar(a, b) { return a - b; }
+    function multiplicar(a, b) { return a * b; }
+    function dividir(a, b) {
+      if (b === 0) return "Error: No se puede dividir por cero";
+      return a / b;
+    }
+
+    function calcular(a, b, operacion) {
+      switch (operacion.toLowerCase()) {
+        case "sumar": return sumar(a, b);
+        case "restar": return restar(a, b);
+        case "multiplicar": return multiplicar(a, b);
+        case "dividir": return dividir(a, b);
+        default: return "Operación no válida";
+      }
+    }
+
+    // ---- Ejercicio 5: objetos y colecciones ----
+    const libroFavorito = {
+      titulo: "El Quijote",
+      autor: "Miguel de Cervantes",
+      paginas: 863,
+      leido: true,
+    };
+
+    const usuario = {
+      nombre: "Alexander",
+      saludar: function () {
+        return `Hola, mi nombre es ${this.nombre}.`;
+      },
+    };
+
+    const biblioteca = [
+      { titulo: "La historia fue otra", autor: "Carmen Hertz", año: 2017 },
+      { titulo: "How to Avoid a Climate Disaster", autor: "Bill Gates", año: 2021 },
+      { titulo: "Into the Wild", autor: "Jon Krakauer", año: 1996 },
+    ];
+
+    function listarBiblioteca(lista) {
+      return lista.map((libro) => `"${libro.titulo}" — ${libro.autor} (${libro.año})`);
+    }
+
+    function titulosEnMayuscula(lista) {
+      return lista.map((libro) => libro.titulo.toUpperCase());
+    }
+
+    // ==================== PARTE B — INTERFAZ (DOM) ====================
+    // (Se ejecuta cuando el DOM esté listo)
+    document.addEventListener("DOMContentLoaded", () => {
+
+      // ---------- Ejercicio 1: saludo ----------
+      const inputNombre = document.getElementById("inputNombre");
+      const btnSaludar = document.getElementById("btnSaludar");
+      const outSaludo = document.getElementById("outSaludo");
+
+      btnSaludar.addEventListener("click", () => {
+        const nombre = inputNombre.value.trim();
+        if (nombre === "") {
+          outSaludo.textContent = "Escribí tu nombre antes de saludar.";
+          outSaludo.classList.add("output--error");
+          return;
+        }
+        outSaludo.classList.remove("output--error");
+        outSaludo.textContent = `Hola ${nombre}, bienvenido al curso de JavaScript`;
+      });
+
+      // ---------- Ejercicio 2: comparador ----------
+      const inputA = document.getElementById("inputA");
+      const inputB = document.getElementById("inputB");
+      const btnComparar = document.getElementById("btnComparar");
+      const outComparar = document.getElementById("outComparar");
+
+      btnComparar.addEventListener("click", () => {
+        const a = Number(inputA.value);
+        const b = Number(inputB.value);
+        outComparar.textContent = compararNumeros(a, b);
+      });
+
+      // ---------- Ejercicio 3: arreglos y bucles ----------
+      const listaNumeros = document.getElementById("listaNumeros");
+      const btnFor = document.getElementById("btnFor");
+      const btnWhile = document.getElementById("btnWhile");
+      const btnFiltrar = document.getElementById("btnFiltrar");
+      const outArreglos = document.getElementById("outArreglos");
+
+      listaNumeros.textContent = `[${numeros.join(", ")}]`;
+
+      function mostrarLista(items) {
+        outArreglos.innerHTML = "";
+        const ul = document.createElement("ul");
+        items.forEach((texto) => {
+          const li = document.createElement("li");
+          li.textContent = texto;
+          ul.appendChild(li);
+        });
+        outArreglos.appendChild(ul);
+      }
+
+      btnFor.addEventListener("click", () => mostrarLista(recorrerConFor(numeros)));
+      btnWhile.addEventListener("click", () => mostrarLista(recorrerConWhile(numeros)));
+      btnFiltrar.addEventListener("click", () => {
+        const filtrados = filtrarMayoresDeDiez(numeros);
+        outArreglos.innerHTML = `<p>Elementos mayores a 10: <strong>[${filtrados.join(", ")}]</strong></p>`;
+      });
+
+      // ---------- Ejercicio 4: calculadora ----------
+      const calcA = document.getElementById("calcA");
+      const calcB = document.getElementById("calcB");
+      const calcOperacion = document.getElementById("calcOperacion");
+      const btnCalcular = document.getElementById("btnCalcular");
+      const outCalculadora = document.getElementById("outCalculadora");
+
+      btnCalcular.addEventListener("click", () => {
+        const a = Number(calcA.value);
+        const b = Number(calcB.value);
+        const resultado = calcular(a, b, calcOperacion.value);
+
+        const esError = typeof resultado === "string" && resultado.includes("Error");
+        outCalculadora.classList.toggle("output--error", esError);
+        outCalculadora.textContent = `Resultado: ${resultado}`;
+      });
+
+      // ---------- Ejercicio 5: objetos y colecciones ----------
+      const outLibro = document.getElementById("outLibro");
+      const outUsuario = document.getElementById("outUsuario");
+      const btnSaludarUsuario = document.getElementById("btnSaludarUsuario");
+      const outBiblioteca = document.getElementById("outBiblioteca");
+      const btnMayuscula = document.getElementById("btnMayuscula");
+
+      outLibro.textContent =
+        `"${libroFavorito.titulo}" de ${libroFavorito.autor} — ${libroFavorito.paginas} páginas` +
+        (libroFavorito.leido ? " (leído)" : " (pendiente)");
+
+      btnSaludarUsuario.addEventListener("click", () => {
+        outUsuario.textContent = usuario.saludar();
+      });
+
+      function mostrarBiblioteca(items) {
+        outBiblioteca.innerHTML = "";
+        const ul = document.createElement("ul");
+        items.forEach((texto) => {
+          const li = document.createElement("li");
+          li.textContent = texto;
+          ul.appendChild(li);
+        });
+        outBiblioteca.appendChild(ul);
+      }
+
+      mostrarBiblioteca(listarBiblioteca(biblioteca));
+
+      btnMayuscula.addEventListener("click", () => {
+        const titulos = titulosEnMayuscula(biblioteca);
+        outBiblioteca.innerHTML = `<p>${titulos.join(" · ")}</p>`;
+      });
+    });
+  </script>
+</body>
+</html>
